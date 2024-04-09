@@ -26,8 +26,18 @@
     const { createApp, ref } = Vue;
     const App = {
       setup() {
+        let message = ref('Hello')
+
+        setTimeout(
+          () => {
+            console.log('Changed!');
+            message.value = 'Bye!';
+          },
+          5000
+        )
+
         return {
-          message: 'Hello'
+          message
         }
       },
     };
