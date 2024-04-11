@@ -28,7 +28,7 @@
   <div id="app">
     <div>
       <!-- What needs to happen here? -->
-      {{areWeDone ? 'Fill in the gap' : 'Fill in the gap'}}
+      {{areWeDone ? 'Your score: ' + score : 'Next question'}}
     </div>
     <div>
       <!-- The question goes here -->
@@ -36,7 +36,7 @@
     </div>
     <div>
       <!-- Connect the input? -->
-      <input v-model="" />
+      <input v-model="answer" />
     </div>
   </div>
   <script>
@@ -53,17 +53,17 @@
           '16',
           '1'
         ];
-        const score = /* reactive */0;
-        const current = /* reactive */0;
-        const answer = /* reactive */0;
+        const score = ref(0);
+        const current = ref(0);
+        const answer = ref(null);
         const question = computed(
-          // Implement the computed
+          () => questions[current.value]
         );
         const rightAnswer = computed(
-          // Implement the computed
+          () => answers[current.value]
         );
         const areWeDone = computed(
-          // Implement the computed
+          () => questions.length === current.value
         );
         // This function does the actual check
         // 1) Is the currently entered answer the expected one?
@@ -72,23 +72,25 @@
         // 4) Remember, v-model uses two-way binding, what can you do here with the answer reactive property?
         // 5) Should we check if the question was the last one? What needs to happen then?
         const check = () => {
+          console.log('Check!');
           // Checking if the answer is correct here?
-          if (true === true) {
-            // What should happen if the answer is right?
+          if (answer.value === rightAnswer.value) {
+            score.value++;
           }
 
-          ; // What should happen with the currently entered answer?
-          ; // What about current question?
+          answer.value = null; // What should happen with the currently entered answer?
+          current.value++; // What about current question?
           // Should we check for something else, is this a last question maybe?
-          if (true === true) {
+          if (areWeDone.value) {
             // What needs to happen here if that's the last question?
+            clearInterval(interval);
           }
         }
         // Starting the interval
-        const interval = setInterval(/* what's missing here? */);
+        const interval = setInterval(check, 4000);
         // What needs to be returned here? Remember, what needs to happen for the template to use a reactive or computed property?
         return {
-          /* What's missing here? */
+          question, answer, areWeDone, score
         }
       },
     };
