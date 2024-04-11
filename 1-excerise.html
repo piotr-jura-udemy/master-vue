@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excersise 1</title>
+  <link rel="stylesheet" href="https://unpkg.com/normalize.css/normalize.css">
+  <style type="text/css">
+    body {
+      font-family: monospace;
+      padding: 20px;
+      font-size: 2em;
+    }
+
+    .can {
+      color: green;
+    }
+
+    .cant {
+      color: red;
+    }
+  </style>
+  <script src="https://unpkg.com/vue@3.4.0"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <!-- What needs to happen here? -->
+      {{areWeDone ? 'Fill in the gap' : 'Fill in the gap'}}
+    </div>
+    <div>
+      <!-- The question goes here -->
+      {{question}}
+    </div>
+    <div>
+      <!-- Connect the input? -->
+      <input v-model="" />
+    </div>
+  </div>
+  <script>
+    const { createApp, ref, computed } = Vue;
+    const App = {
+      setup() {
+        const questions = [
+          'How much is 2+2',
+          'How much is 3*5+1',
+          'What is the rest from 3/1'
+        ];
+        const answers = [
+          '4',
+          '16',
+          '1'
+        ];
+        const score = /* reactive */0;
+        const current = /* reactive */0;
+        const answer = /* reactive */0;
+        const question = computed(
+          // Implement the computed
+        );
+        const rightAnswer = computed(
+          // Implement the computed
+        );
+        const areWeDone = computed(
+          // Implement the computed
+        );
+        // This function does the actual check
+        // 1) Is the currently entered answer the expected one?
+        // 2) What needs to be happen with current question number?
+        // 3) What about the score, if the answer was right?
+        // 4) Remember, v-model uses two-way binding, what can you do here with the answer reactive property?
+        // 5) Should we check if the question was the last one? What needs to happen then?
+        const check = () => {
+          // Checking if the answer is correct here?
+          if (true === true) {
+            // What should happen if the answer is right?
+          }
+
+          ; // What should happen with the currently entered answer?
+          ; // What about current question?
+          // Should we check for something else, is this a last question maybe?
+          if (true === true) {
+            // What needs to happen here if that's the last question?
+          }
+        }
+        // Starting the interval
+        const interval = setInterval(/* what's missing here? */);
+        // What needs to be returned here? Remember, what needs to happen for the template to use a reactive or computed property?
+        return {
+          /* What's missing here? */
+        }
+      },
+    };
+    createApp(App).mount('#app');
+  </script>
+</body>
+
+</html>
