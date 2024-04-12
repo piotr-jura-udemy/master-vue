@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Project 2</title>
+  <link rel="stylesheet" href="https://unpkg.com/normalize.css/normalize.css">
+  <style type="text/css">
+    body {
+      font-family: monospace;
+      padding: 20px;
+      font-size: 16px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+    }
+
+    .photo {
+      position: relative;
+      border: 1px solid #ccc;
+    }
+
+    .photo img {
+      width: 100%;
+      display: block;
+    }
+
+    .favorite-button {
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 24px;
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      cursor: pointer;
+    }
+
+    .favorite-button.active {
+      color: gold;
+    }
+
+    .no-photos {
+      text-align: center;
+      color: #999;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+  </style>
+  <script src="https://unpkg.com/vue@3.4.0"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- Form for Adding Photos -->
+    <form>
+      <input placeholder="Enter image URL">
+      <button type="submit">Add Photo</button>
+    </form>
+
+    <!-- Conditional Rendering -->
+    <p class="no-photos">No photos added yet. Add some!</p>
+
+    <div class="gallery">
+      <!-- List Rendering and Conditional Class Binding -->
+      <div class="photo">
+        <!-- An image goes here -->
+        <button class="favorite-button">
+          ★
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+    const App = {
+      setup() {
+        // Keep track of the list of photos
+        // We need a ref for the currently entered URL
+        const addPhoto = () => {
+          // Adding photo logic goes here
+        };
+        const toggleFavorite = () => {
+          // Favorite toggling logic
+        };
+
+        return {
+
+        }
+      },
+    };
+    createApp(App).mount('#app');
+  </script>
+</body>
+
+</html>
