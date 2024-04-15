@@ -69,10 +69,10 @@
 
     <div class="gallery" v-else>
       <!-- List Rendering and Conditional Class Binding -->
-      <div class="photo" v-for="photo in photos" :key="photo.id">
+      <div class="photo" v-for="(photo, index) in photos" :key="photo.id">
         <!-- An image goes here -->
-        <img :src="photo.url" />
-        <button class="favorite-button" @click="toggleFavorite(photo)" :class="{'active': photo.isF}">
+        <img :src="photo.url" @click="removePhoto(index)" />
+        <button class="favorite-button" @click="toggleFavorite(photo)" :class="{'active': photo.isFavorite}">
           ★
         </button>
       </div>
@@ -121,12 +121,16 @@
           photo.isFavorite = !photo.isFavorite;
           console.log(photo);
         };
+        const removePhoto = (index) => {
+          photos.value.splice(index, 1);
+        }
 
         return {
           addPhoto,
           photos,
           newPhotoUrl,
-          toggleFavorite
+          toggleFavorite,
+          removePhoto
         }
       },
     };
