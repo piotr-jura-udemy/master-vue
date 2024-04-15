@@ -84,7 +84,23 @@
     const App = {
       setup() {
         // Keep track of the list of photos
-        const photos = ref([]);
+        const photos = ref([
+          {
+            id: 1,
+            url: 'https://images.unsplash.com/photo-1712939706943-b6b3b4549937?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNHx8fGVufDB8fHx8fA%3D%3D',
+            isFavorite: false,
+          },
+          {
+            id: 2,
+            url: 'https://plus.unsplash.com/premium_photo-1712933121311-dcdc41d9fb17?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHx8',
+            isFavorite: false,
+          },
+          {
+            id: 3,
+            url: 'https://images.unsplash.com/photo-1713105227378-91e790dfe4f0?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8',
+            isFavorite: false
+          }
+        ]);
         // We need a ref for the currently entered URL
         const newPhotoUrl = ref('');
         const addPhoto = () => {
