@@ -72,7 +72,7 @@
       <div class="photo" v-for="photo in photos" :key="photo.id">
         <!-- An image goes here -->
         <img :src="photo.url" />
-        <button class="favorite-button">
+        <button class="favorite-button" @click="toggleFavorite(photo)" :class="{'active': photo.isF}">
           ★
         </button>
       </div>
@@ -116,14 +116,17 @@
             newPhotoUrl.value = '';
           }
         };
-        const toggleFavorite = () => {
-          // Favorite toggling logic
+        const toggleFavorite = (photo) => {
+          console.log(photo);
+          photo.isFavorite = !photo.isFavorite;
+          console.log(photo);
         };
 
         return {
           addPhoto,
           photos,
-          newPhotoUrl
+          newPhotoUrl,
+          toggleFavorite
         }
       },
     };
