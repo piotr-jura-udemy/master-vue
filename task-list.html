@@ -92,10 +92,16 @@
   </div>
 
   <script>
-    const { createApp } = Vue;
+    const { createApp, onMounted, onBeforeMount } = Vue;
 
     const App = {
       setup() {
+        onMounted(() => {
+          console.log('mounted!');
+        });
+        onBeforeMount(() => {
+          console.log('before mount');
+        });
         return {
 
         }
