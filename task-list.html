@@ -57,7 +57,7 @@
   <div id="app">
     <form>
       <!-- Adding tasks form -->
-      <input placeholder="Add new task">
+      <input ref="newTaskInput" placeholder="Add new task">
       <select>
         <option disabled value="">Select priority</option>
         <option>High</option>
@@ -92,18 +92,19 @@
   </div>
 
   <script>
-    const { createApp, onMounted, onBeforeMount } = Vue;
+    const { createApp, onMounted, onBeforeMount, ref } = Vue;
 
     const App = {
       setup() {
+        const newTaskInput = ref(null);
         onMounted(() => {
-          console.log('mounted!');
+          newTaskInput.value.focus();
         });
         onBeforeMount(() => {
           console.log('before mount');
         });
         return {
-
+          newTaskInput
         }
       },
     };
