@@ -71,19 +71,20 @@
     <input placeholder="Filter tasks...">
 
     <!-- If there no tasks -->
-    <div>
+    <div v-if="tasks.length === 0">
       <p>No tasks found. Try changing the filter or add some tasks!</p>
     </div>
 
-    <div>
+    <div v-else>
       <h3>Your Tasks</h3>
       <!-- This is a list of tasks -->
-      <div>
+      <div v-for="task in tasks" :key="task.id"
+        :class="{'task': true, completed: task.done, [task.priority.toLowerCase()]: true}">
         <div>
           <!-- Is task done? -->
-          <input type="checkbox">
+          <input type="checkbox" v-model="task.done">
           <!-- Task description -->
-          <span></span>
+          <span>{{task.description}}</span>
         </div>
         <!-- Removing a task -->
         <button class="remove-button">✖</button>
@@ -96,6 +97,14 @@
 
     const App = {
       setup() {
+        const tasks = ref([
+          {
+            id: 1,
+            description: "Buy groceries",
+            priority: "Low",
+            done: false
+          }
+        ]);
         const newTaskInput = ref(null);
         onMounted(() => {
           newTaskInput.value.focus();
@@ -104,7 +113,8 @@
           console.log('before mount');
         });
         return {
-          newTaskInput
+          newTaskInput,
+          tasks
         }
       },
     };
