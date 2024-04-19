@@ -93,7 +93,7 @@
   </div>
 
   <script>
-    const { createApp, onMounted, onBeforeMount, ref } = Vue;
+    const { createApp, onMounted, onBeforeMount, ref, watch } = Vue;
 
     const App = {
       setup() {
@@ -123,6 +123,15 @@
             newPriority.value = '';
           }
         }
+        // watch(newTask, (newValue, oldValue) => {
+        //   console.log(
+        //     `New value is ${newValue}, old was ${oldValue}`
+        //   );
+        // });
+
+        watch(tasks, () => {
+          console.log('Tasks has changed!');
+        }, { deep: true });
 
         return {
           newTaskInput,
