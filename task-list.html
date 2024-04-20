@@ -93,7 +93,7 @@
   </div>
 
   <script>
-    const { createApp, onMounted, onBeforeMount, ref, watch } = Vue;
+    const { createApp, onMounted, onBeforeMount, ref, watch, watchEffect } = Vue;
 
     const App = {
       setup() {
@@ -127,6 +127,11 @@
         //   console.log(
         //     `New value is ${newValue}, old was ${oldValue}`
         //   );
+        // }, { immediate: true });
+        // watchEffect(() => {
+        //   console.log(
+        //     `New task input value is ${newTask.value}`
+        //   )
         // });
 
         watch(tasks, () => {
