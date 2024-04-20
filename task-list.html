@@ -97,14 +97,11 @@
 
     const App = {
       setup() {
-        const tasks = ref([
-          {
-            id: 1,
-            description: "Buy groceries",
-            priority: "Low",
-            done: false
-          }
-        ]);
+        const tasks = ref(
+          JSON.parse(
+            localStorage.getItem('tasks') ?? '[]'
+          )
+        );
         const newTaskInput = ref(null);
         const newTask = ref('');
         const newPriority = ref('');
@@ -135,7 +132,10 @@
         // });
 
         watch(tasks, () => {
-          console.log('Tasks has changed!');
+          localStorage.setItem(
+            'tasks',
+            JSON.stringify(tasks.value)
+          )
         }, { deep: true });
 
         return {
