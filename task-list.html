@@ -68,7 +68,7 @@
     </form>
 
     <!-- Task filtering -->
-    <input placeholder="Filter tasks...">
+    <input placeholder="Filter tasks..." v-model="filterText">
 
     <!-- If there no tasks -->
     <div v-if="tasks.length === 0">
@@ -78,7 +78,7 @@
     <div v-else>
       <h3>Your Tasks</h3>
       <!-- This is a list of tasks -->
-      <div v-for="task in tasks" :key="task.id"
+      <div v-for="(task, index) in filteredTasks" :key="task.id"
         :class="{'task': true, completed: task.done, [task.priority.toLowerCase()]: true}">
         <div>
           <!-- Is task done? -->
@@ -87,13 +87,13 @@
           <span>{{task.description}}</span>
         </div>
         <!-- Removing a task -->
-        <button class="remove-button">✖</button>
+        <button class="remove-button" @click="removeTask(index)">✖</button>
       </div>
     </div>
   </div>
 
   <script>
-    const { createApp, onMounted, onBeforeMount, ref, watch, watchEffect } = Vue;
+    const { createApp, onMounted, onBeforeMount, ref, watch, watchEffect, computed } = Vue;
 
     const App = {
       setup() {
@@ -102,9 +102,16 @@
             localStorage.getItem('tasks') ?? '[]'
           )
         );
+        const filteredTasks = computed(
+          () => tasks.value.filter(
+            task => task.description.toLowerCase()
+              .includes(filterText.value.toLowerCase())
+          )
+        );
         const newTaskInput = ref(null);
         const newTask = ref('');
         const newPriority = ref('');
+        const filterText = ref('');
         onMounted(() => {
           newTaskInput.value.focus();
         });
@@ -120,6 +127,9 @@
             newPriority.value = '';
           }
         }
+        const removeTask = (index) => {
+          tasks.value.splice(index, 1);
+        };
         // watch(newTask, (newValue, oldValue) => {
         //   console.log(
         //     `New value is ${newValue}, old was ${oldValue}`
@@ -143,7 +153,10 @@
           tasks,
           addTask,
           newTask,
-          newPriority
+          newPriority,
+          removeTask,
+          filterText,
+          filteredTasks
         }
       },
     };
