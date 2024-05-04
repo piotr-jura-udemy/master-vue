@@ -1,0 +1,33 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "title": "Rails Conference 2024",
+      "date": "2024-05-20",
+      "description": "Join us for a day of insightful talks and networking with industry leaders in technology.",
+      "location": "Convention Center, Downtown"
+    },
+    {
+      "id": "2",
+      "title": "Vue Conference 2023",
+      "date": "2024-05-20",
+      "description": "Join us for a day of insightful talks and networking with industry leaders in technology.",
+      "location": "Convention Center, Downtown"
+    },
+    {
+      "id": "3",
+      "title": "PHP Conference 2022",
+      "date": "2024-05-20",
+      "description": "Join us for a day of insightful talks and networking with industry leaders in technology.",
+      "location": "Convention Center, Downtown"
+    },
+    {
+      "id": "4",
+      "title": "Rust Conference 2021",
+      "date": "2024-05-20",
+      "description": "Join us for a day of insightful talks and networking with industry leaders in technology.",
+      "location": "Convention Center, Downtown"
+    }
+  ],
+  "bookings": []
+}
