@@ -8,9 +8,7 @@
       <div class="space-y-4">
         <p>{{ description }}</p>
         <div class="flex justify-end">
-          <RoundButton @click="$emit('register')">
-            Register
-          </RoundButton>
+          <RoundButton @click="$emit('register')"> Register </RoundButton>
         </div>
       </div>
     </template>
@@ -18,8 +16,8 @@
 </template>
 
 <script setup>
-import SectionCard from "@/components/SectionCard.vue";
-import RoundButton from "@/components/RoundButton.vue";
+import SectionCard from '@/components/SectionCard.vue';
+import RoundButton from '@/components/RoundButton.vue';
 defineProps({
   title: String,
   when: String,

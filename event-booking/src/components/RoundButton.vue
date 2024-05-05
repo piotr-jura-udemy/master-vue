@@ -1,5 +1,8 @@
 <template>
-  <button :class="['text-sm font-medium rounded-full px-3 py-1', variants[variant] ?? variants.default]" @click="$emit('click')">
+  <button
+    :class="['text-sm font-medium rounded-full px-3 py-1', variants[variant] ?? variants.default]"
+    @click="$emit('click')"
+  >
     <slot></slot>
   </button>
 </template>
