@@ -19,7 +19,12 @@
     </section>
     <h2 class="text-2xl font-medium">Your Bookings</h2>
     <section class="grid grid-cols-1 gap-4">
-      <BookingItem v-for="i in 3" :key="i" />
+      <template v-if="!bookingsLoading">
+        <BookingItem v-for="booking in bookings" :key="booking.id" :title="booking.eventTitle" />
+      </template>
+      <template v-else>
+        <LoadingBookingItem v-for="i in 4" :key="i" />
+      </template>
     </section>
   </main>
 </template>
@@ -28,10 +33,13 @@
 import { ref, onMounted } from 'vue';
 import EventCard from '@/components/EventCard.vue';
 import LoadingEventCard from '@/components/LoadingEventCard.vue';
+import LoadingBookingItem from '@/components/LoadingBookingItem.vue';
 import BookingItem from '@/components/BookingItem.vue';
 
 const events = ref([]);
 const eventsLoading = ref(false);
+const bookings = ref([]);
+const bookingsLoading = ref(false);
 
 const fetchEvents = async () => {
   eventsLoading.value = true;
@@ -40,6 +48,16 @@ const fetchEvents = async () => {
     events.value = await response.json();
   } finally {
     eventsLoading.value = false;
+  }
+};
+
+const fetchBookings = async () => {
+  bookingsLoading.value = true;
+  try {
+    const response = await fetch('http://localhost:3001/bookings');
+    bookings.value = await response.json();
+  } finally {
+    bookingsLoading.value = false;
   }
 };
 
@@ -61,5 +79,8 @@ const handleRegistration = async (event) => {
   });
 };
 
-onMounted(() => fetchEvents());
+onMounted(() => {
+  fetchEvents();
+  fetchBookings();
+});
 </script>
