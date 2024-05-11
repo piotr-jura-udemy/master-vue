@@ -31,38 +31,17 @@
   ],
   "bookings": [
     {
-      "id": "1714930886547",
+      "id": "1715437297773",
       "userId": 1,
       "eventId": "1",
       "eventTitle": "Rails Conference 2024",
       "status": "confirmed"
     },
     {
-      "id": "1714993304315",
+      "id": "1715437800287",
       "userId": 1,
-      "eventId": "3",
-      "eventTitle": "PHP Conference 2022",
-      "status": "confirmed"
-    },
-    {
-      "id": "1715432392621",
-      "userId": 1,
-      "eventId": "1",
-      "eventTitle": "Rails Conference 2024",
-      "status": "confirmed"
-    },
-    {
-      "id": "1715432394870",
-      "userId": 1,
-      "eventId": "3",
-      "eventTitle": "PHP Conference 2022",
-      "status": "confirmed"
-    },
-    {
-      "id": "1715432614037",
-      "userId": 1,
-      "eventId": "1",
-      "eventTitle": "Rails Conference 2024",
+      "eventId": "2",
+      "eventTitle": "Vue Conference 2023",
       "status": "confirmed"
     }
   ]
