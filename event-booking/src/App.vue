@@ -25,6 +25,7 @@
           :key="booking.id"
           :title="booking.eventTitle"
           :status="booking.status"
+          @cancelled="cancelBooking(booking.id)"
         />
       </template>
       <template v-else>
@@ -66,6 +67,8 @@ const fetchBookings = async () => {
   }
 };
 
+const findBookingById = (id) => bookings.value.findIndex((b) => b.id === id);
+
 const handleRegistration = async (event) => {
   if (bookings.value.some((booking) => booking.eventId === event.id && booking.userId === 1)) {
     alert('You are already registered for this event.');
@@ -93,7 +96,7 @@ const handleRegistration = async (event) => {
     });
 
     if (response.ok) {
-      const index = bookings.value.findIndex((b) => b.id === newBooking.id);
+      const index = findBookingById(newBooking.id);
       bookings.value[index] = await response.json();
     } else {
       throw new Error('Failed to confirm booking');
@@ -101,6 +104,24 @@ const handleRegistration = async (event) => {
   } catch (e) {
     console.error(`Failed to register for event: `, e);
     bookings.value = bookings.value.filter((b) => b.id !== newBooking.id);
+  }
+};
+
+const cancelBooking = async (bookingId) => {
+  const index = findBookingById(bookingId);
+  const originalBooking = bookings.value[index];
+  bookings.value.splice(index, 1);
+
+  try {
+    const response = await fetch(`http://localhost:3001/bookings/${bookingId}`, {
+      method: 'DELETE'
+    });
+    if (!response.ok) {
+      throw new Error('Booking could not be cancelled.');
+    }
+  } catch (e) {
+    console.error(`Failed to cancel booking:`, e);
+    bookings.value.splice(index, 0, originalBooking);
   }
 };
 

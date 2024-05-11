@@ -29,20 +29,5 @@
       "location": "Convention Center, Downtown"
     }
   ],
-  "bookings": [
-    {
-      "id": "1715437297773",
-      "userId": 1,
-      "eventId": "1",
-      "eventTitle": "Rails Conference 2024",
-      "status": "confirmed"
-    },
-    {
-      "id": "1715437800287",
-      "userId": 1,
-      "eventId": "2",
-      "eventTitle": "Vue Conference 2023",
-      "status": "confirmed"
-    }
-  ]
+  "bookings": []
 }
