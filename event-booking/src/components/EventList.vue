@@ -1,14 +1,19 @@
 <template>
   <section class="grid grid-cols-2 gap-8">
     <template v-if="!loading">
-      <EventCard
-        v-for="event in events"
-        :key="event.id"
-        :title="event.title"
-        :when="event.date"
-        :description="event.description"
-        @register="$emit('register', event)"
-      />
+      <template v-if="events.length">
+        <EventCard
+          v-for="event in events"
+          :key="event.id"
+          :title="event.title"
+          :when="event.date"
+          :description="event.description"
+          @register="$emit('register', event)"
+        />
+      </template>
+      <template v-else>
+        <div class="col-span-2 text-center text-gray-500">No events yet.</div>
+      </template>
     </template>
     <template v-else>
       <LoadingEventCard v-for="i in 4" :key="i" />
