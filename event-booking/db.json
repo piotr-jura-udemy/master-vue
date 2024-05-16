@@ -36,6 +36,20 @@
       "eventId": "3",
       "eventTitle": "PHP Conference 2022",
       "status": "confirmed"
+    },
+    {
+      "id": "1715871065953",
+      "userId": 1,
+      "eventId": "4",
+      "eventTitle": "Rust Conference 2021",
+      "status": "confirmed"
+    },
+    {
+      "id": "1715871265242",
+      "userId": 1,
+      "eventId": "2",
+      "eventTitle": "Vue Conference 2023",
+      "status": "confirmed"
     }
   ]
 }
