@@ -40,5 +40,9 @@ const tabs: Tab[] = [
   }
 ];
 const currentTab = ref<TabKey>('General');
-const currentTabComponent = computed(() => tabs.find(tab => tab.key === currentTab.value)?.component);
+const currentTabComponent = computed(
+  () => tabs.find(
+    tab => tab.key === currentTab.value
+  )?.component
+);
 </script>
