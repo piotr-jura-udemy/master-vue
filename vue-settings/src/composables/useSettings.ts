@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 interface GeneralSettings {
   username: string;
@@ -8,13 +8,23 @@ interface GeneralSettings {
   country: string;
 }
 
-const general = ref<GeneralSettings>({
-  about: '',
-  country: 'USA',
-  gender: 'male',
-  email: '',
-  username: ''
-});
+const general = ref<GeneralSettings>(
+  (() => {
+    const stored = localStorage.getItem('general');
+
+    return stored !== null
+      ? JSON.parse(stored)
+      : {
+          about: '',
+          country: 'USA',
+          gender: 'male',
+          email: '',
+          username: ''
+        };
+  })()
+);
+
+watch(general, (value) => localStorage.setItem('general', JSON.stringify(value)), { deep: true });
 
 interface NotificationsSettings {
   email: boolean;
