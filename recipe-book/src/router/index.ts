@@ -1,3 +1,4 @@
+import RecipeView from '@/views/RecipeView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import FavoritesView from '@/views/FavoritesView.vue';
@@ -22,6 +23,11 @@ const router = createRouter({
       path: '/add-recipe',
       name: 'add-recipe',
       component: AddRecipeView
+    },
+    {
+      path: '/recipe/:id',
+      name: 'recipe',
+      component: RecipeView
     }
   ]
 });
