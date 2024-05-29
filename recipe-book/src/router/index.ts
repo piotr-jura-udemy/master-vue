@@ -1,8 +1,8 @@
-import RecipeView from '@/views/RecipeView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
+import HomeView from '@/views/HomeView.vue';
 import FavoritesView from '@/views/FavoritesView.vue';
 import AddRecipeView from '@/views/AddRecipeView.vue';
+import RecipeView from '@/views/RecipeView.vue';
 
 // mydomain.com
 // mydomain.com/app
