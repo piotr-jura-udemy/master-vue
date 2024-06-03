@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 interface Recipe {
   id: string;
@@ -23,5 +23,10 @@ export const useRecipeStore = defineStore('recipe', () => {
 
   const getRecipeById = (id: string) => recipes.value.find((recipe) => recipe.id === id);
 
-  return { recipes, addRecipe, getRecipeById };
+  const filteredRecipes = (searchQuery: string) =>
+    recipes.value.filter((recipe) =>
+      recipe.name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase())
+    );
+
+  return { recipes, addRecipe, getRecipeById, filteredRecipes };
 });
