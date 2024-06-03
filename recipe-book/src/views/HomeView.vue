@@ -11,6 +11,7 @@
         </li>
       </ul>
     </nav>
+
     <div v-else>
       No recipes found!
     </div>
@@ -26,5 +27,5 @@ const recipeStore = useRecipeStore();
 const searchQuery = ref('');
 const filteredRecipes = computed(
   () => recipeStore.filteredRecipes(searchQuery.value)
-)
+);
 </script>
