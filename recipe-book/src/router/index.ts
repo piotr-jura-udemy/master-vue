@@ -4,6 +4,7 @@ import FavoritesView from '@/views/FavoritesView.vue';
 import AddRecipeView from '@/views/AddRecipeView.vue';
 import RecipeView from '@/views/RecipeView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
+import EditRecipeView from '@/views/EditRecipeView.vue';
 
 // mydomain.com
 // mydomain.com/app
@@ -28,6 +29,11 @@ const router = createRouter({
       path: '/add-recipe',
       name: 'add-recipe',
       component: AddRecipeView
+    },
+    {
+      path: '/recipe/:id/edit',
+      name: 'edit-recipe',
+      component: EditRecipeView
     },
     {
       path: '/recipe/:id',
