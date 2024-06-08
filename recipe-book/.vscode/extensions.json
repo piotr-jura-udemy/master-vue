@@ -2,6 +2,18 @@
   "recommendations": [
     "Vue.volar",
     "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-complete-tag",
+    "steoates.autoimport",
+    "ms-vscode.vscode-typescript-next",
+    "ritwickdey.liveserver",
+    "raillyhugo.one-hunter",
+    "whizkydee.material-palenight-theme",
+    "ahmadawais.shades-of-purple",
+    "bradlc.vscode-tailwindcss",
+    "stivo.tailwind-fold",
+    "enkia.tokyo-night",
+    "raunofreiberg.vesper"
   ]
 }
