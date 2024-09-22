@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {reactive, ref} from 'vue'
+import {computed, reactive, ref} from 'vue'
 import Draggable from 'vuedraggable'
 import ModalDialog from './components/ModalDialog.vue';
-import type { List } from './types';
+import { Card, type List } from './types';
 
 const lists = reactive<List[]>([
   {
@@ -28,13 +28,45 @@ const lists = reactive<List[]>([
   }
 ])
 const isModalOpen = ref(false)
+const editingCard = ref<Card | null>(null)
+const editingListIndex = ref<number | null>(null)
+const modalMode = computed(() => editingCard.value === null ? 'add' : 'edit')
 
-const openModal = () => {
+const openModal = (listIndex: number, card?: Card) => {
+  editingListIndex.value = listIndex
+  editingCard.value = card === undefined ? null : card
   isModalOpen.value = true
+}
+
+const saveCard = (card: Card) => {
+  if (editingListIndex.value === null) {
+    return
+  }
+  if (modalMode.value === 'add') {
+    // Adding
+    const newId = Math.max(
+      ...lists.flatMap(list => list.cards.map(c => c.id))
+    )
+    lists[editingListIndex.value].cards.push(
+      {...card, id: newId}
+    )
+  } else {
+    // Modify
+    const cardIndex = lists[editingListIndex.value]
+      .cards.findIndex(
+        (cardOnList) => cardOnList.id === card.id
+      )
+    if (cardIndex !== -1) {
+      lists[editingListIndex.value].cards[cardIndex] = card
+    }
+  }
+  closeModal()
 }
 
 const closeModal = () => {
   isModalOpen.value = false
+  editingListIndex.value = null
+  editingCard.value = null
 }
 </script>
 
