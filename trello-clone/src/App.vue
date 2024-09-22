@@ -44,7 +44,7 @@ const closeModal = () => {
       <div class="bg-gray-100 p-3 rounded-lg min-w-[250px] flex flex-col" v-for="list in lists" :key="list.id">
         <h2 class="font-medium mb-2">{{ list.title }}</h2>
         
-        <Draggable :list="list.cards" group="cards">
+        <Draggable :list="list.cards" group="cards" item-key="id">
           <template #item="{element}">
             <div class="bg-white p-2 my-2 rounded shadow cursor-pointer">
               <span class="text-sm font-medium">{{ element.title }}</span>
