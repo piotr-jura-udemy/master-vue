@@ -2,7 +2,7 @@
 import {computed, reactive, ref} from 'vue'
 import Draggable from 'vuedraggable'
 import ModalDialog from './components/ModalDialog.vue';
-import { Card, type List } from './types';
+import { type Card, type List } from './types';
 
 const lists = reactive<List[]>([
   {
@@ -73,12 +73,12 @@ const closeModal = () => {
 <template>
   <main class="p-5 font-sans">
     <div class="flex gap-5 py-5 overflow-x-auto">
-      <div class="bg-gray-100 p-3 rounded-lg min-w-[250px] flex flex-col" v-for="list in lists" :key="list.id">
+      <div class="bg-gray-100 p-3 rounded-lg min-w-[250px] flex flex-col" v-for="(list, listIndex) in lists" :key="list.id">
         <h2 class="font-medium mb-2">{{ list.title }}</h2>
         
         <Draggable :list="list.cards" group="cards" item-key="id">
           <template #item="{element}">
-            <div class="bg-white p-2 my-2 rounded shadow cursor-pointer">
+            <div @click="openModal(listIndex, element)" class="bg-white p-2 my-2 rounded shadow cursor-pointer">
               <span class="text-sm font-medium">{{ element.title }}</span>
               <p class="text-xs text-gray-400">
                 {{ element.description }}
@@ -87,12 +87,12 @@ const closeModal = () => {
           </template>
         </Draggable>
 
-        <button class="w-full bg-transparent rounded hover:bg-white text-gray-500 p-2 text-left mt-2 text-sm font-medium" @click="openModal">
+        <button class="w-full bg-transparent rounded hover:bg-white text-gray-500 p-2 text-left mt-2 text-sm font-medium" @click="openModal(listIndex)">
           + Add Card
         </button>
       </div>
     </div>
 
-    <ModalDialog :is-open="isModalOpen" @close="closeModal" />
+    <ModalDialog :is-open="isModalOpen" :card="editingCard" :mode="modalMode" @close="closeModal" @save="saveCard" />
   </main>
 </template>
